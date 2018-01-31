@@ -1,0 +1,2 @@
+* How to make sure an image file is actually an image and does not contain malicious script tags?
+* How to best use the template to add variable content within it?
