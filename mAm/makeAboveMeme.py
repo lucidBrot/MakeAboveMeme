@@ -20,7 +20,7 @@ Options:
 
 """
 from docopt import docopt                   # parsing
-from sanitizer import sanitizer             # sanitizing html
+from sanitizer import Sanitizer # sanitizing html
 
 VERSION = 0.1
 
