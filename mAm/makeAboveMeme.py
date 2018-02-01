@@ -16,7 +16,7 @@ Options:
     -p <points>, --points <points>          How many points you want. Don't specify if you want me to not display any.
     -c <comments>, --comments <comments>    How many comments there are below your post. Don't specify if you want mo to not display any.
     -C <Ctext>                              Alternatively to -c and/or -p, specify the complete text to be displayed in the light-grey font.
-    -l <imagelink>, --link<imagelink        Alternatively to -i you can provide the image per link
+    -l <imagelink>, --link <imagelink>        Alternatively to -i you can provide the image per link
 
 """
 from docopt import docopt                   # parsing
@@ -26,6 +26,9 @@ VERSION = 0.1
 
 def main(arguments):
     print("You have called main with arguments = \n{0}".format(arguments))
+    if(arguments['--link']):
+        mySanitizer = Sanitizer()
+        print(mySanitizer.cleanHTML("some test <script>alert('123');</script> input")) # TODO: write actual logic
 
 if __name__ == '__main__':
     arguments = docopt(__doc__, version="MakeAboveMeme {0}".format(VERSION))

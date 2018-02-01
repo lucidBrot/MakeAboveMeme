@@ -20,11 +20,11 @@ class Sanitizer:
             print("cleanHTML  >>  With Javascript & Styles:")
             print(lxml.html.tostring(lxml.html.fragment_fromstring(toClean, create_parent='div')))
             print("cleanHTML  >>  Without Javascript & Styles:")
-            print(lxml.html.tostring(self._cleaner.clean_html(lxml.html.fragment_fromstring(toClean, create_parent='div'))))
+            cleaned = lxml.html.tostring(self._cleaner.clean_html(lxml.html.fragment_fromstring(toClean, create_parent='div')))
+            print(cleaned)
         
-        print("cleanHTML  >>  finished.")
-
+        return 
 
 if __name__ == '__main__':
     mySanitizer = Sanitizer()
-    mySanitizer.cleanHTML(" href='test'> this is a debug string</a>")
+    mySanitizer.cleanHTML('<img src="https://img-9gag-fun.9cache.com/photo/aYgwO3m_700b.jpg" alt="When you love Earth-chan" id="IMG_15" />')
