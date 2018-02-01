@@ -6,17 +6,25 @@ class Sanitizer:
     def __init__(self):
         self._cleaner = Cleaner()
 
-    def cleanHTML(self):
+    # removes javascript and styles, but keeps everything else intact
+    # python2 doesn't yet feature explicit typing....
+    # cleanHTML => self -> str --> str
+    def cleanHTML(self, toClean):
+        # see http://lxml.de/api/lxml.html.clean.Cleaner-class.html for all options
         self._cleaner.javascript = True # Filter javascript
         self._cleaner.style = True # Filter styles and stylesheets
+        self._cleaner.embedded = True # Disallow flash, iframes
         if not __debug__: # if the -O flag for debugging was set (confusing, I know)
+            print("cleanHTML  >>  Input String:")
+            print(toClean)
             print("cleanHTML  >>  With Javascript & Styles:")
-            print(lxml.html.tostring(lxml.html.parse('../somepost.html'))) # TODO: use the actual arguments
+            print(lxml.html.tostring(lxml.html.fragment_fromstring(toClean, create_parent='div')))
             print("cleanHTML  >>  Without Javascript & Styles:")
-            print(lxml.html.tostring(self._cleaner.clean_html(lxml.html.parse('../somepost.html'))))
+            print(lxml.html.tostring(self._cleaner.clean_html(lxml.html.fragment_fromstring(toClean, create_parent='div'))))
         
         print("cleanHTML  >>  finished.")
 
+
 if __name__ == '__main__':
     mySanitizer = Sanitizer()
-    mySanitizer.cleanHTML()
+    mySanitizer.cleanHTML(" href='test'> this is a debug string</a>")
