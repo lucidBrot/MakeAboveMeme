@@ -45,28 +45,7 @@ body {
     margin: 0px 20px 4px 20px;
 }/*#P_4*/
 
-.A {
-    color: rgb(0, 153, 255);
-    text-decoration: none solid rgb(0, 153, 255);
-    text-size-adjust: 100%;
-    column-rule-color: rgb(0, 153, 255);
-    caret-color: rgb(0, 153, 255);
-    border: 0px none rgb(0, 153, 255);
-    font: normal normal 700 normal 14px / 24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-    margin: 0px 4px 0px 0px;
-    outline: rgb(0, 153, 255) none 0px;
-}
 
-.C {
-    color: rgb(153, 153, 153);
-    text-decoration: none solid rgb(153, 153, 153);
-    text-size-adjust: 100%;
-    column-rule-color: rgb(153, 153, 153);
-    caret-color: rgb(153, 153, 153);
-    border: 0px none rgb(153, 153, 153);
-    font: normal normal 400 normal 14px / normal -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-    outline: rgb(153, 153, 153) none 0px;
-}
 
 
 #A_5, #A_6 {

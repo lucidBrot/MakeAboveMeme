@@ -58,6 +58,8 @@ def makeAbove(arguments):
         title = ""
 
     image="http://i0.kym-cdn.com/photos/images/original/001/330/335/b84.png"
+    if arguments['--image'] is not None:
+        image=arguments['--image']
 
     substDir = { 'title':title, 'image':image }
     tempStr = template.substitute(substDir)
