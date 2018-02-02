@@ -11,3 +11,8 @@ And to learn how to use git submodules
 
 ## Notes
 To get the X-server to run with xvfb, run `Xvfb :1 &` followed by `export DISPLAY=:1` (or any other number than `:1`, as long as it is in both).
+
+## Execute
+(Maybe need x-server already running. TODO: test if not)
+`python makeAboveMeme.py -T "test title"`
+`webkit2png temp.html -o meme.png -x 700 1000`
