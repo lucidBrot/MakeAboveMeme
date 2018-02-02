@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """MakeAboveMeme
 
 Usage:
@@ -20,15 +21,50 @@ Options:
 
 """
 from docopt import docopt                   # parsing
-from sanitizer import Sanitizer # sanitizing html
+from sanitizer import Sanitizer             # sanitizing html
+import os                                   # for script file path
+from string import Template                 # for text substitution
 
 VERSION = 0.1
+MAM_TEMPLATE_FILENAME = 'makeAboveTemplate.html'
 
 def main(arguments):
+    # initialize some globals
+    global script_dir_g, MAM_TEMPLATE_FILENAME, template_path_g, output_path_g
+    script_dir_g = os.path.dirname(__file__)
+    template_path_g = os.path.join(script_dir_g, MAM_TEMPLATE_FILENAME)
+
     print("You have called main with arguments = \n{0}".format(arguments))
-    if(arguments['--link']):
-        mySanitizer = Sanitizer()
-        print(mySanitizer.cleanHTML("some test <script>alert('123');</script> input")) # TODO: write actual logic
+
+    output_path_g = arguments['--out'] # should always exist because of default value specified in help message
+
+    makeAbove(arguments)
+    print("done") # TODO: write actual logic
+
+# arguments is a list of arguments, as provided by docopt
+def makeAbove(arguments):
+    global template_path_g
+
+    mySanitizer = Sanitizer() # default sanitizer for mAm. Clears JS and CSS, leaves html in.
+    # for every argument, check if set and handle accordingly
+
+    with open(template_path_g, 'r') as templateFile:
+        template = Template(templateFile.read())
+    
+    # set title if there should be one
+    if arguments['--title'] is not None:
+        title = arguments['--title']
+    else:
+        title = ""
+
+    image="http://i0.kym-cdn.com/photos/images/original/001/330/335/b84.png"
+
+    substDir = { 'title':title, 'image':image }
+    tempStr = template.substitute(substDir)
+
+    # write result to file
+    with open('./temp.html', 'w') as outFile:
+        outFile.write(tempStr)
 
 if __name__ == '__main__':
     arguments = docopt(__doc__, version="MakeAboveMeme {0}".format(VERSION))
