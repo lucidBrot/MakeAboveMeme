@@ -131,48 +131,11 @@ body {
     font-family: "Segoe UI", Arial;
     font-style: normal;
     font-variant: normal;
-    font-weight: 700;
+    font-weight: normal;
     font-size: 14px;
     line-height: 24px;
     outline: rgb(153, 153, 153) none 0px;
 }/*#A_9, #A_10*/
-
-#DIV_12 {
-    height: 608.563px;
-    text-size-adjust: 100%;
-    width: 640px;
-    perspective-origin: 320px 304.281px;
-    transform-origin: 320px 304.281px;
-    font-family: "Segoe UI", Arial;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 24px;
-}/*#DIV_12*/
-
-#A_13 {
-    color: rgb(0, 153, 255);
-    cursor: zoom-in;
-    display: block;
-    height: 608.563px;
-    min-height: 608.571px;
-    text-decoration: none solid rgb(0, 153, 255);
-    text-size-adjust: 100%;
-    width: 640px;
-    column-rule-color: rgb(0, 153, 255);
-    perspective-origin: 320px 304.281px;
-    transform-origin: 320px 304.281px;
-    caret-color: rgb(0, 153, 255);
-    border: 0px none rgb(0, 153, 255);
-    font-family: "Segoe UI", Arial;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 24px;
-    outline: rgb(0, 153, 255) none 0px;
-}/*#A_13*/
 
 #DIV_14 {
     color: rgb(0, 153, 255);
@@ -216,4 +179,5 @@ body {
     line-height: 24px;
     outline: rgb(0, 153, 255) none 0px;
 }/*#IMG_15*/
+
 
