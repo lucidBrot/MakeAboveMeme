@@ -33,7 +33,7 @@ body {
     word-wrap: break-word;
     perspective-origin: 320px 14px;
     transform-origin: 320px 14px;
-    font: normal normal 700 normal 24px / 28px -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+    font: normal normal 700 normal 24px / 28px "Segoe UI", sans-serif;
     margin: 0px 20px 8px 20px;
 }/*#H1_3*/
 
@@ -55,7 +55,13 @@ body {
     column-rule-color: rgb(0, 153, 255);
     caret-color: rgb(0, 153, 255);
     border: 0px none rgb(0, 153, 255);
-    font: normal normal 700 normal 14px / 24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+    /* font: normal normal 700 normal 14px / 24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif; */
+    font-family: "Segoe UI", Arial;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
     margin: 0px 4px 0px 0px;
     outline: rgb(0, 153, 255) none 0px;
 }/*#A_5, #A_6*/
@@ -67,7 +73,8 @@ body {
     column-rule-color: rgb(0, 153, 255);
     caret-color: rgb(0, 153, 255);
     border: 0px none rgb(0, 153, 255);
-    font: normal normal 700 normal 14px / 24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+    font-weight:bold;
+    font: normal normal 700 normal 14px / 24px -apple-system, BlinkMacSystemFont, "Segoe UI";
     margin: 0px 4px 0px 0px;
     outline: rgb(0, 153, 255) none 0px;
 }/*#A_7*/
