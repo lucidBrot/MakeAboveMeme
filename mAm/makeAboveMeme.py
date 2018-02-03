@@ -26,7 +26,7 @@ import os                                   # for script file path
 from string import Template                 # for text substitution
 
 VERSION = 0.1
-MAM_TEMPLATE_FILENAME = 'makeAboveTemplate.html'
+MAM_TEMPLATE_FILENAME = 'mam.html'
 
 def main(arguments):
     # initialize some globals
