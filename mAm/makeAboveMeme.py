@@ -24,6 +24,8 @@ from docopt import docopt                   # parsing
 from sanitizer import Sanitizer             # sanitizing html
 import os                                   # for script file path
 from string import Template                 # for text substitution
+import subprocess                           # for running webkit2png
+import tempfile                             # for creating temporary files
 
 VERSION = 0.1
 MAM_TEMPLATE_FILENAME = 'mam.html'
@@ -43,7 +45,7 @@ def main(arguments):
 
 # arguments is a list of arguments, as provided by docopt
 def makeAbove(arguments):
-    global template_path_g
+    global template_path_g, output_path_g, script_dir_g
 
     mySanitizer = Sanitizer() # default sanitizer for mAm. Clears JS and CSS, leaves html in.
     # for every argument, check if set and handle accordingly
@@ -64,9 +66,18 @@ def makeAbove(arguments):
     substDir = { 'title':title, 'image':image }
     tempStr = template.substitute(substDir)
 
-    # write result to file
-    with open('./temp.html', 'w') as outFile:
-        outFile.write(tempStr)
+    # write result to temp file
+    (fd, filename) = tempfile.mkstemp(suffix='.html', dir=script_dir_g) # create the tempfile in the script-containing directory
+    try:
+        tfile = os.fdopen(fd, "w")
+        tfile.write(tempStr)
+        tfile.close()
+        webkitres = subprocess.check_output(["webkit2png", filename, "-o", output_path_g, "-x", "70", "1000"])
+        print("Called webkit2png with filename {0} and output path {1}".format(filename, output_path_g))
+    except subprocess.CalledProcessError as e:
+        print("webkit2png failed. DO SOMETHING.") # TODO: handle error of webkit2png
+    finally:
+        os.remove(filename)
 
 if __name__ == '__main__':
     arguments = docopt(__doc__, version="MakeAboveMeme {0}".format(VERSION))
