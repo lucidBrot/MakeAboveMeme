@@ -9,3 +9,4 @@ include mAm/mam.css
 include bin/*
 include README.md
 include docs/*
+include data/*

@@ -4,7 +4,7 @@
 
 Usage:
     makeAboveMeme.py (-h | -v)
-    makeAboveMeme.py [-T <title>] [-t <text>] [-i <image> | -l <imagelink>] [-o <output>] [--tag <tag> ...] [[-p <points> -c <comments>] | -C <Ctext>]
+    makeAboveMeme.py [-T <title>] [-t <text>] [-i <image> | -l <imagelink>] [-o <output>] [--tag <tag> ...] [[-p <points> -c <comments>] | -C <Ctext>] [-X]
 
 Options:
     -h --help                               Show this help message.
@@ -18,6 +18,7 @@ Options:
     -c <comments>, --comments <comments>    How many comments there are below your post. Don't specify if you want mo to not display any.
     -C <Ctext>                              Alternatively to -c and/or -p, specify the complete text to be displayed in the light-grey font.
     -l <imagelink>, --link <imagelink>      Alternatively to -i you can provide the image per link
+    -X                                      Use the already running X-server instead of xvfb
 
 """
 from docopt import docopt                   # parsing
@@ -27,7 +28,7 @@ from string import Template                 # for text substitution
 import subprocess                           # for running webkit2png
 import tempfile                             # for creating temporary files
 
-VERSION = "0.5.1"
+VERSION = "0.5.2"
 MAM_TEMPLATE_FILENAME = 'mam.html' # css is included from there. currently from mam.css
 TAG_HTML_TEMPLATE_STRING = Template('<a href="" class="A">${tagtext}</a> ')
 COMMENTLINE_TEMPLATE_STRING = Template('<a href="" class="C">${points}</a> · <a href="" class="C">${comments}</a>')
@@ -99,7 +100,10 @@ def makeAbove(arguments):
         tfile = os.fdopen(fd, "w") 
         tfile.write(tempStr)
         tfile.close()
-        webkitres = subprocess.check_output(["webkit2png", filename, "-o", output_path_g, "-x", "70", "1000"])
+        if not arguments['-X']:
+            webkitres = subprocess.check_output(["webkit2png", filename, "-o", output_path_g, "-x", "70", "1000"])
+        else:
+            webkitres = subprocess.check_output(["webkit2png", filename, "-o", output_path_g])
         print("Called webkit2png with filename {0} and output path {1}".format(filename, output_path_g))
     except subprocess.CalledProcessError as e:
         print("webkit2png failed. DO SOMETHING.") # handle error of webkit2png? I don't know how, so not my job
