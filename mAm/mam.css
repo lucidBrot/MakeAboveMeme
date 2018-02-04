@@ -141,7 +141,7 @@ body {
     outline: rgb(0, 153, 255) none 0px;
 }/*#DIV_14*/
 
-#IMG_15 {
+.IMG {
     color: rgb(0, 153, 255);
     cursor: zoom-in;
     display: block;
@@ -161,6 +161,4 @@ body {
     font-size: 14px;
     line-height: 24px;
     outline: rgb(0, 153, 255) none 0px;
-}/*#IMG_15*/
-
-
+}/
