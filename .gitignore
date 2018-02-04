@@ -1,2 +1,5 @@
 *.pyc
+*.swp
+*.nosync
+webkit2png.log
 

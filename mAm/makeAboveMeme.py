@@ -13,11 +13,11 @@ Options:
     -t <text>, --text <text>                Specify the text below the title and above the image.
     -i <image>, --image <image>             Specify the relative or absolute path to your image.
     -o <output>, --out <output>             The output file [default: ./aboveMeme.png]
-    --tag <tag>                            Repeat '--tag mytag' as often as you want. You need to type the '--tag' every time.
+    --tag <tag>                             Repeat '--tag mytag' as often as you want. You need to type the '--tag' every time.
     -p <points>, --points <points>          How many points you want. Don't specify if you want me to not display any.
     -c <comments>, --comments <comments>    How many comments there are below your post. Don't specify if you want mo to not display any.
     -C <Ctext>                              Alternatively to -c and/or -p, specify the complete text to be displayed in the light-grey font.
-    -l <imagelink>, --link <imagelink>        Alternatively to -i you can provide the image per link
+    -l <imagelink>, --link <imagelink>      Alternatively to -i you can provide the image per link
 
 """
 from docopt import docopt                   # parsing
@@ -27,9 +27,10 @@ from string import Template                 # for text substitution
 import subprocess                           # for running webkit2png
 import tempfile                             # for creating temporary files
 
-VERSION = 0.1
+VERSION = 0.2
 MAM_TEMPLATE_FILENAME = 'mam.html' # css is included from there. currently from mam.css
 TAG_HTML_TEMPLATE_STRING = Template('<a href="" class="A">${tagtext}</a> ')
+COMMENTLINE_TEMPLATE_STRING = Template('<a href="" class="C">${points}</a> · <a href="" class="C">${comments}</a>')
 
 def main(arguments):
     # initialize some globals
@@ -60,7 +61,7 @@ def makeAbove(arguments):
     else:
         title = ""
 
-    image="http://i0.kym-cdn.com/photos/images/original/001/330/335/b84.png"
+    image=""
     if arguments['--image'] is not None:
         image=arguments['--image']
 
@@ -70,7 +71,21 @@ def makeAbove(arguments):
     for tag in arguments['--tag']:
         alltags+= TAG_HTML_TEMPLATE_STRING.substitute({'tagtext':tag})
 
-    substDir = { 'title':title, 'image':image, 'tags':alltags }
+    # for the line with points and comments
+    global COMMENTLINE_TEMPLATE_STRING
+    if arguments['-C'] is not None:
+        commentline = '<a href="" class="C">{0}</a>'.format(arguments['-C'])
+    elif (arguments['--comments'] is None) and (arguments['--points'] is None):
+        commentline = ""
+    else:
+        comments = 0 if arguments['--comments'] is None else arguments['--comments']
+        points = 0   if arguments['--points'] is None else arguments['--points']
+        subC = "{0} comments".format(comments)
+        subP = "{0} points".format(points)
+        commentline = COMMENTLINE_TEMPLATE_STRING.substitute({'points':subP, 'comments':subC})
+
+
+    substDir = { 'title':title, 'image':image, 'tags':alltags, 'commentline':commentline }
     tempStr = template.substitute(substDir)
 
     # write result to temp file
