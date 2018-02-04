@@ -20,3 +20,6 @@ python makeAboveMeme.py -T "Thest of the Mhemery" -i "https://i.imgur.com/Y3w71e
 (Maybe need x-server already running. TODO: test if not)
 `python makeAboveMeme.py -T "test title"`
 `webkit2png temp.html -o meme.png -x 700 1000`
+
+## Formatting
+Any html tags are sanitized away. You can use `\n` typed out, the newline characeter `\n`, or `<br>` for line breaks though.

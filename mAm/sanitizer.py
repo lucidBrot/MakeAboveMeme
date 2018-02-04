@@ -3,7 +3,8 @@ import cgi
 class Sanitizer:
     """Used to get rid of potentially evil code in strings and images."""
     def cleanHTML(self, toClean):
-        return cgi.escape(toClean)
+        # allow newlines with <br> and \n as well as the actual newline character
+        return cgi.escape(toClean.replace("\\n", "\n").replace("<br>","\n")).replace("\n","<br>")
 
 if __name__ == '__main__':
     mySanitizer = Sanitizer()
