@@ -21,5 +21,10 @@ python makeAboveMeme.py -T "Thest of the Mhemery" -i "https://i.imgur.com/Y3w71e
 `python makeAboveMeme.py -T "test title"`
 `webkit2png temp.html -o meme.png -x 700 1000`
 
+### Error Codes
+If everything goes fine, the default should be 0.
+If something breaks unexpectedly, the default should be 1.
+If the call to webkit2png breaks, the exit code is 2.
+
 ## Formatting
 Any html tags are sanitized away. You can use `\n` typed out, the newline characeter `\n`, or `<br>` for line breaks though.

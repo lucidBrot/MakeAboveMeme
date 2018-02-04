@@ -43,7 +43,7 @@ def main(arguments):
     output_path_g = arguments['--out'] # should always exist because of default value specified in help message
 
     makeAbove(arguments)
-    print("done") # TODO: write actual logic
+    print("done")  
 
 # arguments is a list of arguments, as provided by docopt
 def makeAbove(arguments):
@@ -102,7 +102,8 @@ def makeAbove(arguments):
         webkitres = subprocess.check_output(["webkit2png", filename, "-o", output_path_g, "-x", "70", "1000"])
         print("Called webkit2png with filename {0} and output path {1}".format(filename, output_path_g))
     except subprocess.CalledProcessError as e:
-        print("webkit2png failed. DO SOMETHING.") # TODO: handle error of webkit2png
+        print("webkit2png failed. DO SOMETHING.") # handle error of webkit2png? I don't know how, so not my job
+        exit(2)
     finally:
         os.remove(filename)
 
