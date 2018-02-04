@@ -4,7 +4,7 @@
 
 Usage:
     makeAboveMeme.py (-h | -v)
-    makeAboveMeme.py [-T <title>] [-t <text>] [-i <image> | -l <imagelink>] [-o <output>] [--tags <tags>...] [[-p <points> -c <comments>] | -C <Ctext>]
+    makeAboveMeme.py [-T <title>] [-t <text>] [-i <image> | -l <imagelink>] [-o <output>] [--tag <tag> ...] [[-p <points> -c <comments>] | -C <Ctext>]
 
 Options:
     -h --help                               Show this help message.
@@ -13,7 +13,7 @@ Options:
     -t <text>, --text <text>                Specify the text below the title and above the image.
     -i <image>, --image <image>             Specify the relative or absolute path to your image.
     -o <output>, --out <output>             The output file [default: ./aboveMeme.png]
-    --tags <tags>                           As many or few tags as you want.
+    --tag <tag>                            Repeat '--tag mytag' as often as you want. You need to type the '--tag' every time.
     -p <points>, --points <points>          How many points you want. Don't specify if you want me to not display any.
     -c <comments>, --comments <comments>    How many comments there are below your post. Don't specify if you want mo to not display any.
     -C <Ctext>                              Alternatively to -c and/or -p, specify the complete text to be displayed in the light-grey font.
@@ -28,7 +28,8 @@ import subprocess                           # for running webkit2png
 import tempfile                             # for creating temporary files
 
 VERSION = 0.1
-MAM_TEMPLATE_FILENAME = 'mam.html'
+MAM_TEMPLATE_FILENAME = 'mam.html' # css is included from there. currently from mam.css
+TAG_HTML_TEMPLATE_STRING = Template('<a href="" class="A">${tagtext}</a> ')
 
 def main(arguments):
     # initialize some globals
@@ -48,8 +49,8 @@ def makeAbove(arguments):
     global template_path_g, output_path_g, script_dir_g
 
     mySanitizer = Sanitizer() # default sanitizer for mAm. Clears JS and CSS, leaves html in.
+    
     # for every argument, check if set and handle accordingly
-
     with open(template_path_g, 'r') as templateFile:
         template = Template(templateFile.read())
     
@@ -63,13 +64,19 @@ def makeAbove(arguments):
     if arguments['--image'] is not None:
         image=arguments['--image']
 
-    substDir = { 'title':title, 'image':image }
+    # create all tags and store them in one long string
+    global TAG_HTML_TEMPLATE_STRING
+    alltags=""
+    for tag in arguments['--tag']:
+        alltags+= TAG_HTML_TEMPLATE_STRING.substitute({'tagtext':tag})
+
+    substDir = { 'title':title, 'image':image, 'tags':alltags }
     tempStr = template.substitute(substDir)
 
     # write result to temp file
     (fd, filename) = tempfile.mkstemp(suffix='.html', dir=script_dir_g) # create the tempfile in the script-containing directory
     try:
-        tfile = os.fdopen(fd, "w")
+        tfile = os.fdopen(fd, "w") # TODO: sanitize string
         tfile.write(tempStr)
         tfile.close()
         webkitres = subprocess.check_output(["webkit2png", filename, "-o", output_path_g, "-x", "70", "1000"])
