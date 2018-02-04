@@ -16,9 +16,6 @@ python makeAboveMeme.py -T "Thest of the Mhemery" -i "https://i.imgur.com/Y3w71e
 * `sudo apt-get install python-dev libxml2-dev libxslt1-dev zlib1g-dev`
   `pip install lxml`
 
-## Notes
-To get the X-server to run with xvfb, run `Xvfb :1 &` followed by `export DISPLAY=:1` (or any other number than `:1`, as long as it is in both).
-
 ## Execute
 (Maybe need x-server already running. TODO: test if not)
 `python makeAboveMeme.py -T "test title"`

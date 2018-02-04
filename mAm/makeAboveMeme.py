@@ -27,7 +27,7 @@ from string import Template                 # for text substitution
 import subprocess                           # for running webkit2png
 import tempfile                             # for creating temporary files
 
-VERSION = 0.2
+VERSION = 0.3
 MAM_TEMPLATE_FILENAME = 'mam.html' # css is included from there. currently from mam.css
 TAG_HTML_TEMPLATE_STRING = Template('<a href="" class="A">${tagtext}</a> ')
 COMMENTLINE_TEMPLATE_STRING = Template('<a href="" class="C">${points}</a> · <a href="" class="C">${comments}</a>')
@@ -60,30 +60,35 @@ def makeAbove(arguments):
         title = arguments['--title']
     else:
         title = ""
+    # clean title
+    title = mySanitizer.cleanHTML(title)
 
     image=""
     if arguments['--image'] is not None:
         image=arguments['--image']
+    image = mySanitizer.cleanHTML(image)
 
     # create all tags and store them in one long string
     global TAG_HTML_TEMPLATE_STRING
     alltags=""
     for tag in arguments['--tag']:
-        alltags+= TAG_HTML_TEMPLATE_STRING.substitute({'tagtext':tag})
+        alltags+= TAG_HTML_TEMPLATE_STRING.substitute({'tagtext':mySanitizer.cleanHTML(tag)})
 
     # for the line with points and comments
     global COMMENTLINE_TEMPLATE_STRING
     if arguments['-C'] is not None:
-        commentline = '<a href="" class="C">{0}</a>'.format(arguments['-C'])
+        argsC = mySanitizer.cleanHTML(arguments['-C'])
+        commentline = '<a href="" class="C">{0}</a>'.format(argsC)
     elif (arguments['--comments'] is None) and (arguments['--points'] is None):
         commentline = ""
     else:
         comments = 0 if arguments['--comments'] is None else arguments['--comments']
         points = 0   if arguments['--points'] is None else arguments['--points']
+        comments = mySanitizer.cleanHTML(comments)
+        points = mySanitizer.cleanHTML(points)
         subC = "{0} comments".format(comments)
         subP = "{0} points".format(points)
         commentline = COMMENTLINE_TEMPLATE_STRING.substitute({'points':subP, 'comments':subC})
-
 
     substDir = { 'title':title, 'image':image, 'tags':alltags, 'commentline':commentline }
     tempStr = template.substitute(substDir)
@@ -91,7 +96,7 @@ def makeAbove(arguments):
     # write result to temp file
     (fd, filename) = tempfile.mkstemp(suffix='.html', dir=script_dir_g) # create the tempfile in the script-containing directory
     try:
-        tfile = os.fdopen(fd, "w") # TODO: sanitize string
+        tfile = os.fdopen(fd, "w") 
         tfile.write(tempStr)
         tfile.close()
         webkitres = subprocess.check_output(["webkit2png", filename, "-o", output_path_g, "-x", "70", "1000"])
