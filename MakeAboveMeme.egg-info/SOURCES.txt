@@ -1,0 +1,12 @@
+README.md
+setup.py
+MakeAboveMeme.egg-info/PKG-INFO
+MakeAboveMeme.egg-info/SOURCES.txt
+MakeAboveMeme.egg-info/dependency_links.txt
+MakeAboveMeme.egg-info/not-zip-safe
+MakeAboveMeme.egg-info/requires.txt
+MakeAboveMeme.egg-info/top_level.txt
+mAm/__init__.py
+mAm/docopt.py
+mAm/makeAboveMeme.py
+mAm/sanitizer.py

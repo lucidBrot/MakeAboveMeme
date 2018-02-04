@@ -10,11 +10,11 @@ python makeAboveMeme.py -T "Thest of the Mhemery" -i "https://i.imgur.com/Y3w71e
 ```
 ![invisible john cena](./docs/meme.png)
 
-## Dependencies
+## Installation and Dependencies
+Maybe `pip install MakeAboveMeme` works. If not, make sure the following dependencies are installed and perform `git clone https://github.com/lucidBrot/MakeAboveMeme.git ./MakeAboveMeme`.
+
 * `sudo apt-get install xvfb` or your standard x-server running
 * [webkit2png](https://stackoverflow.com/a/48537053/2550406)
-* `sudo apt-get install python-dev libxml2-dev libxslt1-dev zlib1g-dev`
-  `pip install lxml`
 
 ## Execute
 (Maybe need x-server already running. TODO: test if not)
