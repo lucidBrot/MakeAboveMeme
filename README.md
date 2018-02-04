@@ -8,7 +8,7 @@ Here's an example made with version 0.2
 ```bash
 python makeAboveMeme.py -T "Thest of the Mhemery" -i "https://i.imgur.com/Y3w71er.jpg" --tag "global warming" --tag "earth chan" --tag "tags are traps" --tag "What the fuck" -c "other" -p 3
 ```
-![invisible john cena](./docs/Y3w71er.jpg)
+![invisible john cena](./docs/meme.png)
 
 ## Dependencies
 * `sudo apt-get install xvfb` or your standard x-server running
