@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
 Name: MakeAboveMeme
-Version: 0.4
+Version: 0.5.1
 Summary: Use the commandline to create a simple text-above-image meme in the stlye of 9gag posts
 Home-page: https://github.com/lucidBrot/MakeAboveMeme
 Author: Eric Mink aka LucidBrot
@@ -19,11 +19,11 @@ Description: # MakeAboveMeme
         ```
         ![invisible john cena](./docs/meme.png)
         
-        ## Dependencies
+        ## Installation and Dependencies
+        Maybe `pip install MakeAboveMeme` works. If not, make sure the following dependencies are installed and perform `git clone https://github.com/lucidBrot/MakeAboveMeme.git ./MakeAboveMeme`.
+        
         * `sudo apt-get install xvfb` or your standard x-server running
         * [webkit2png](https://stackoverflow.com/a/48537053/2550406)
-        * `sudo apt-get install python-dev libxml2-dev libxslt1-dev zlib1g-dev`
-          `pip install lxml`
         
         ## Execute
         (Maybe need x-server already running. TODO: test if not)

@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='MakeAboveMeme',
-    version='0.4',
+    version='0.5.1',
     packages=['mAm',],
     description="Use the commandline to create a simple text-above-image meme in the stlye of 9gag posts",
     long_description=open('README.md').read(),
@@ -12,5 +12,7 @@ setup(
     install_requires=[
         'webkit2png'
     ],
-    zip_safe=False
+    zip_safe=False,
+    scripts=['bin/makeAboveMeme'],
+    include_package_data=True
 ) # docopt is not required because it is self-contained in this distribution

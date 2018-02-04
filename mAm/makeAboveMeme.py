@@ -27,7 +27,7 @@ from string import Template                 # for text substitution
 import subprocess                           # for running webkit2png
 import tempfile                             # for creating temporary files
 
-VERSION = 0.4
+VERSION = "0.5.1"
 MAM_TEMPLATE_FILENAME = 'mam.html' # css is included from there. currently from mam.css
 TAG_HTML_TEMPLATE_STRING = Template('<a href="" class="A">${tagtext}</a> ')
 COMMENTLINE_TEMPLATE_STRING = Template('<a href="" class="C">${points}</a> · <a href="" class="C">${comments}</a>')
@@ -106,6 +106,11 @@ def makeAbove(arguments):
         exit(2)
     finally:
         os.remove(filename)
+
+# for other files to call the script
+def call():
+    arguments = docopt(__doc__, version="MakeAboveMeme {0}".format(VERSION))
+    main(arguments)
 
 if __name__ == '__main__':
     arguments = docopt(__doc__, version="MakeAboveMeme {0}".format(VERSION))
