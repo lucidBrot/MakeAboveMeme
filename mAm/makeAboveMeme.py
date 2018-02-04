@@ -27,7 +27,7 @@ from string import Template                 # for text substitution
 import subprocess                           # for running webkit2png
 import tempfile                             # for creating temporary files
 
-VERSION = 0.3
+VERSION = 0.4
 MAM_TEMPLATE_FILENAME = 'mam.html' # css is included from there. currently from mam.css
 TAG_HTML_TEMPLATE_STRING = Template('<a href="" class="A">${tagtext}</a> ')
 COMMENTLINE_TEMPLATE_STRING = Template('<a href="" class="C">${points}</a> · <a href="" class="C">${comments}</a>')

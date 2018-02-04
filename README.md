@@ -27,4 +27,4 @@ If something breaks unexpectedly, the default should be 1.
 If the call to webkit2png breaks, the exit code is 2.
 
 ## Formatting
-Any html tags are sanitized away. You can use `\n` typed out, the newline characeter `\n`, or `<br>` for line breaks though.
+Any html tags are sanitized away. You can use `\n` typed out, the newline character `\n`, or `<br>` for line breaks though.
