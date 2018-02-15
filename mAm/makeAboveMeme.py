@@ -11,13 +11,12 @@ Options:
     -v --version                            Show the current version.
     -T <title>, --title <title>             Specify the meme title.
     -t <text>, --text <text>                Specify the text below the title and above the image.
-    -i <image>, --image <image>             Specify the relative or absolute path to your image.
+    -i <image>, --image <image>, -l <imagelink>      Specify the relative or absolute path to your image.
     -o <output>, --out <output>             The output file [default: ./aboveMeme.png]
     --tag <tag>                             Repeat '--tag mytag' as often as you want. You need to type the '--tag' every time.
     -p <points>, --points <points>          How many points you want. Don't specify if you want me to not display any.
     -c <comments>, --comments <comments>    How many comments there are below your post. Don't specify if you want mo to not display any.
     -C <Ctext>                              Alternatively to -c and/or -p, specify the complete text to be displayed in the light-grey font.
-    -l <imagelink>, --link <imagelink>      Alternatively to -i you can provide the image per link
     -X                                      Use the already running X-server instead of xvfb
 
 """
@@ -28,7 +27,7 @@ from string import Template                 # for text substitution
 import subprocess                           # for running webkit2png
 import tempfile                             # for creating temporary files
 
-VERSION = "0.5.2"
+VERSION = "0.5.3"
 MAM_TEMPLATE_FILENAME = 'mam.html' # css is included from there. currently from mam.css
 TAG_HTML_TEMPLATE_STRING = Template('<a href="" class="A">${tagtext}</a> ')
 COMMENTLINE_TEMPLATE_STRING = Template('<a href="" class="C">${points}</a> · <a href="" class="C">${comments}</a>')

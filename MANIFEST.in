@@ -10,3 +10,4 @@ include bin/*
 include README.md
 include docs/*
 include data/*
+include readme.txt
