@@ -1,5 +1,6 @@
 MANIFEST.in
 README.md
+readme.txt
 setup.py
 MakeAboveMeme.egg-info/PKG-INFO
 MakeAboveMeme.egg-info/SOURCES.txt
