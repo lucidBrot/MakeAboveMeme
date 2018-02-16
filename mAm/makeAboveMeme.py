@@ -90,7 +90,7 @@ def makeAbove(arguments):
         subP = "{0} points".format(points)
         commentline = COMMENTLINE_TEMPLATE_STRING.substitute({'points':subP, 'comments':subC})
 
-    substDir = { 'title':title, 'image':image, 'tags':alltags, 'commentline':commentline }
+    substDir = { 'title':title, 'image':image, 'tags':alltags, 'commentline':commentline } # TODO: Text
     tempStr = template.substitute(substDir)
 
     # write result to temp file
