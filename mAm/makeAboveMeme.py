@@ -98,7 +98,6 @@ def makeAbove(arguments):
         text=arguments['--text']
         text = mySanitizer.cleanHTML(text)
         text = TXT_TEMPLATE_STRING.substitute({'text':text}) # write text into html-string
-    print("DEBUG: text line is {}".format(text))
 
     substDir = { 'title':title, 'image':image, 'tags':alltags, 'commentline':commentline, 'text':text }
     tempStr = template.substitute(substDir)
