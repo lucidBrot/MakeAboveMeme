@@ -63,7 +63,7 @@ def makeAbove(arguments):
     # clean title
     title = mySanitizer.cleanHTML(title)
 
-    image="" # TODO: translate relative paths correctly
+    image="" 
     if arguments['--image'] is not None:
         image=arguments['--image']
     image = mySanitizer.cleanHTML(image)
@@ -108,7 +108,8 @@ def makeAbove(arguments):
         print("webkit2png failed. DO SOMETHING.") # handle error of webkit2png? I don't know how, so not my job
         exit(2)
     finally:
-        os.remove(filename)
+        print("DEBUG VERSION: not deleting tempfile")
+#        os.remove(filename)
 
 # for other files to call the script
 def call():
