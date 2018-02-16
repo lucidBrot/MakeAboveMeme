@@ -63,7 +63,7 @@ def makeAbove(arguments):
     # clean title
     title = mySanitizer.cleanHTML(title)
 
-    image=""
+    image="" # TODO: translate relative paths correctly
     if arguments['--image'] is not None:
         image=arguments['--image']
     image = mySanitizer.cleanHTML(image)
