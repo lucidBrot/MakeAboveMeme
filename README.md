@@ -12,6 +12,7 @@ python makeAboveMeme.py -T "Thest of the Mhemery" -i "https://i.imgur.com/Y3w71e
 
 Though I'm constantly working on that and it's thus still unstable, you can also use the telegram bot @shi_ver_bot:
 ![visible john cena](./docs/0.5.4.jpg)
+
 As you can see, html tags are **not** evaluated. I *might* add support for links and markdown in the future, but it's not a priority.
 
 ## Installation and Dependencies
