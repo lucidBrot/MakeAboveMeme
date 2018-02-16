@@ -4,14 +4,14 @@
 
 Usage:
     makeAboveMeme.py (-h | -v)
-    makeAboveMeme.py [-T <title>] [-t <text>] [-i <image> | -l <imagelink>] [-o <output>] [--tag <tag> ...] [[-p <points> -c <comments>] | -C <Ctext>] [-X]
+    makeAboveMeme.py [-T <title>] [-t <text>] [-i <image>] [-o <output>] [--tag <tag> ...] [[-p <points> -c <comments>] | -C <Ctext>] [-X]
 
 Options:
     -h --help                               Show this help message.
     -v --version                            Show the current version.
     -T <title>, --title <title>             Specify the meme title.
     -t <text>, --text <text>                Specify the text below the title and above the image.
-    -i <image>, --image <image>, -l <imagelink>      Specify the relative or absolute path to your image.
+    -i <image>, --image <image>             Specify the relative or absolute path to your image.
     -o <output>, --out <output>             The output file [default: ./aboveMeme.png]
     --tag <tag>                             Repeat '--tag mytag' as often as you want. You need to type the '--tag' every time.
     -p <points>, --points <points>          How many points you want. Don't specify if you want me to not display any.
