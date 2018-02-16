@@ -162,3 +162,17 @@ body {
     line-height: 24px;
     outline: rgb(0, 153, 255) none 0px;
 }/
+
+.TXT {
+    text-size-adjust: 100%;
+    width: 600px;
+    caret-color: rgb(0, 153, 255);
+    border: 0px none rgb(0, 153, 255);
+    font-family: "Segoe UI", Arial;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0px 20px;
+}

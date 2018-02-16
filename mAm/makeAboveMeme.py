@@ -27,10 +27,11 @@ from string import Template                 # for text substitution
 import subprocess                           # for running webkit2png
 import tempfile                             # for creating temporary files
 
-VERSION = "0.5.3"
+VERSION = "0.5.4"
 MAM_TEMPLATE_FILENAME = 'mam.html' # css is included from there. currently from mam.css
 TAG_HTML_TEMPLATE_STRING = Template('<a href="" class="A">${tagtext}</a> ')
 COMMENTLINE_TEMPLATE_STRING = Template('<a href="" class="C">${points}</a> · <a href="" class="C">${comments}</a>')
+TXT_TEMPLATE_STRING = Template('<div class="TXT">${text}</div>')
 
 def main(arguments):
     # initialize some globals
@@ -90,7 +91,16 @@ def makeAbove(arguments):
         subP = "{0} points".format(points)
         commentline = COMMENTLINE_TEMPLATE_STRING.substitute({'points':subP, 'comments':subC})
 
-    substDir = { 'title':title, 'image':image, 'tags':alltags, 'commentline':commentline } # TODO: Text
+    # set text if there should be
+    global TXT_TEMPLATE_STRING
+    text = ''
+    if arguments['--text'] is not None:
+        text=arguments['--text']
+        text = mySanitizer.cleanHTML(text)
+        text = TXT_TEMPLATE_STRING.substitute({'text':text}) # write text into html-string
+    print("DEBUG: text line is {}".format(text))
+
+    substDir = { 'title':title, 'image':image, 'tags':alltags, 'commentline':commentline, 'text':text }
     tempStr = template.substitute(substDir)
 
     # write result to temp file
@@ -108,8 +118,7 @@ def makeAbove(arguments):
         print("webkit2png failed. DO SOMETHING.") # handle error of webkit2png? I don't know how, so not my job
         exit(2)
     finally:
-        print("DEBUG VERSION: not deleting tempfile")
-#        os.remove(filename)
+        os.remove(filename)
 
 # for other files to call the script
 def call():
